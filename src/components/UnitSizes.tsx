@@ -1,4 +1,5 @@
-import { Check } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const units = [
   {
@@ -40,10 +41,45 @@ const units = [
 ];
 
 export function UnitSizes() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="units" className="py-24 bg-slate-50 dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section
+      ref={sectionRef}
+      id="units"
+      className="py-28 bg-slate-50 dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 relative overflow-hidden"
+    >
+      {/* Decorative grid pattern */}
+      <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+          backgroundSize: '40px 40px',
+        }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className={`text-center max-w-3xl mx-auto mb-20 transition-all duration-700 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-6"
+            }`}
+        >
           <h2 className="text-sm font-semibold text-brand-700 dark:text-brand-400 tracking-wide uppercase">
             Unit Sizes & Prices
           </h2>
@@ -57,46 +93,56 @@ export function UnitSizes() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {units.map((unit) => (
+          {units.map((unit, index) => (
             <div
               key={`${unit.size}-${unit.type}`}
-              className={`relative flex flex-col p-8 bg-white dark:bg-slate-950 rounded-3xl border ${
-                unit.popular
-                  ? "border-brand-700 shadow-xl dark:border-brand-700/50"
-                  : "border-slate-200 dark:border-slate-800 shadow-sm"
-              } hover:shadow-lg transition-all`}
+              className={`group relative flex flex-col p-8 bg-white dark:bg-slate-950 rounded-3xl border transition-all duration-500 hover:-translate-y-2 ${unit.popular
+                  ? "border-brand-600 shadow-xl shadow-brand-500/10 dark:border-brand-500/50 dark:shadow-brand-500/5"
+                  : "border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-200 dark:hover:border-brand-800/50"
+                } ${isVisible ? "animate-fade-in-up" : "opacity-0"
+                }`}
+              style={{
+                animationDelay: isVisible ? `${index * 100 + 200}ms` : "0ms",
+              }}
             >
               {unit.popular && (
                 <div className="absolute -top-4 left-0 right-0 flex justify-center">
-                  <span className="bg-accent-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                  <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-accent-400 to-accent-500 text-slate-900 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide shadow-md shadow-accent-500/20">
+                    <Sparkles className="h-3.5 w-3.5" />
                     Most Popular
                   </span>
                 </div>
               )}
+
               <div className="mb-6">
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                <h3 className="text-3xl font-bold text-slate-900 dark:text-white group-hover:text-brand-700 dark:group-hover:text-brand-400 transition-colors duration-300">
                   {unit.size}
                 </h3>
                 <p className="text-sm font-medium text-brand-700 dark:text-brand-400 mt-1">
                   {unit.type}
                 </p>
               </div>
+
               <div className="mb-6 flex items-baseline text-slate-900 dark:text-white">
-                <span className="text-4xl font-extrabold tracking-tight">
+                <span className="text-5xl font-extrabold tracking-tight">
                   {unit.price}
                 </span>
-                <span className="ml-1 text-xl font-medium text-slate-500 dark:text-slate-400">
+                <span className="ml-1 text-xl font-medium text-slate-400 dark:text-slate-500">
                   /mo
                 </span>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mb-8 flex-grow">
+
+              <p className="text-sm text-slate-600 dark:text-slate-400 mb-8 flex-grow leading-relaxed">
                 {unit.description}
               </p>
-              <ul className="space-y-4 mb-8">
+
+              <ul className="space-y-3 mb-8">
                 {unit.features.map((feature) => (
                   <li key={feature} className="flex items-start">
-                    <div className="flex-shrink-0">
-                      <Check className="h-5 w-5 text-brand-700" />
+                    <div className="flex-shrink-0 mt-0.5">
+                      <div className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-900/30">
+                        <Check className="h-3 w-3 text-brand-700 dark:text-brand-400" />
+                      </div>
                     </div>
                     <p className="ml-3 text-sm text-slate-700 dark:text-slate-300">
                       {feature}
@@ -104,22 +150,29 @@ export function UnitSizes() {
                   </li>
                 ))}
               </ul>
+
               <a
                 href="#contact"
-                className={`w-full py-3 px-4 rounded-xl font-semibold text-center transition-colors ${
-                  unit.popular
-                    ? "bg-brand-700 text-white hover:bg-brand-800 shadow-md"
-                    : "bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
-                }`}
+                className={`w-full py-3.5 px-4 rounded-xl font-semibold text-center transition-all duration-300 block ${unit.popular
+                    ? "bg-brand-600 text-white hover:bg-brand-700 shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30"
+                    : "bg-slate-100 text-slate-900 hover:bg-brand-600 hover:text-white dark:bg-slate-800 dark:text-white dark:hover:bg-brand-600"
+                  }`}
               >
                 Reserve Now
               </a>
             </div>
           ))}
         </div>
-        <div className="mt-12 text-center">
+
+        <div className="mt-14 text-center">
           <p className="text-sm text-slate-500 dark:text-slate-400">
-            * Prices and availability are subject to change. Please contact us
+            * Prices and availability are subject to change. Please{" "}
+            <a
+              href="#contact"
+              className="text-brand-600 dark:text-brand-400 hover:underline font-medium"
+            >
+              contact us
+            </a>{" "}
             for the most up-to-date information.
           </p>
         </div>
