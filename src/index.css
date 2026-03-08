@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-50: #e6f2eb;
+  --color-brand-100: #cce5d6;
+  --color-brand-200: #99ccae;
+  --color-brand-300: #66b285;
+  --color-brand-400: #33995d;
+  --color-brand-500: #1a9e51;
+  --color-brand-600: #137a3e; /* Exact Logo Green */
+  --color-brand-700: #0f6232;
+  --color-brand-800: #0b4925;
+  --color-brand-900: #04180c;
+  --color-brand-950: #020c06;
+  
+  --color-accent-50: #fffbe6;
+  --color-accent-100: #fff6cc;
+  --color-accent-200: #ffed99;
+  --color-accent-300: #ffe466;
+  --color-accent-400: #ffdb33;
+  --color-accent-500: #ffd100; /* Exact Logo Yellow */
+  --color-accent-600: #cca700;
+  --color-accent-700: #997d00;
+  --color-accent-800: #665400;
+  --color-accent-900: #332a00;
+  --color-accent-950: #1a1500;
+}
+
+body {
+  @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50 antialiased transition-colors duration-200;
+}
+
+
