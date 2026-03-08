@@ -4,13 +4,13 @@ import { useState } from "react";
 
 const sizes = [
     {
-        id: "5x5",
-        label: "5' x 5'",
-        title: "Small Walk-in Closet",
-        fits: "Small furniture, chest of drawers, several boxes, or seasonal items.",
-        equivalent: "25 sq. ft.",
+        id: "5x10",
+        label: "5' x 10'",
+        title: "Large Walk-in Closet",
+        fits: "Contents of a dorm room or small studio apartment.",
+        equivalent: "50 sq. ft.",
         icon: Box,
-        image: "https://images.unsplash.com/photo-1590510326499-f38f73b2f0a1?auto=format&fit=crop&q=80&w=400",
+        image: "https://res.cloudinary.com/storelocal/image/fetch//https://dr2r4w0s7b8qm.cloudfront.net/image_manager_app/d3d63aa12ee8d19c10ceff783ee7727f-20240405-062513.jpg",
     },
     {
         id: "10x10",
@@ -19,7 +19,7 @@ const sizes = [
         fits: "Contents of a one-bedroom apartment, including appliances and furniture.",
         equivalent: "100 sq. ft.",
         icon: Home,
-        image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=400",
+        image: "https://res.cloudinary.com/storelocal/image/fetch//https://dr2r4w0s7b8qm.cloudfront.net/image_manager_app/46f0f39a7f3d6e8be098022be1d134ed-20240405-062725.jpg",
     },
     {
         id: "10x20",
@@ -28,7 +28,7 @@ const sizes = [
         fits: "Contents of a multi-bedroom house, or a vehicle/small boat.",
         equivalent: "200 sq. ft.",
         icon: Car,
-        image: "https://images.unsplash.com/photo-1506774050907-338ee335020c?auto=format&fit=crop&q=80&w=400",
+        image: "https://res.cloudinary.com/storelocal/image/fetch//https://dr2r4w0s7b8qm.cloudfront.net/image_manager_app/aae91041e5d839212b43256d5106f326-20240405-063140.jpg",
     },
     {
         id: "10x30",
@@ -37,12 +37,12 @@ const sizes = [
         fits: "Contents of a 3-5 bedroom house, large vehicles, or business inventory.",
         equivalent: "300 sq. ft.",
         icon: Warehouse,
-        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=400",
+        image: "https://res.cloudinary.com/storelocal/image/fetch//https://dr2r4w0s7b8qm.cloudfront.net/image_manager_app/640d25930b1799440dcfb95f7a388eb3-20240405-063517.jpg",
     },
 ];
 
 export function SizeGuide() {
-    const [activeTab, setActiveTab] = useState("5x5");
+    const [activeTab, setActiveTab] = useState("5x10");
 
     const activeSize = sizes.find((s) => s.id === activeTab) || sizes[0];
 
@@ -69,8 +69,8 @@ export function SizeGuide() {
                                 key={size.id}
                                 onClick={() => setActiveTab(size.id)}
                                 className={`flex-shrink-0 flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-300 text-left ${activeTab === size.id
-                                        ? "bg-brand-50 dark:bg-brand-900/20 border-brand-600 dark:border-brand-500 shadow-lg shadow-brand-500/10"
-                                        : "bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700"
+                                    ? "bg-brand-50 dark:bg-brand-900/20 border-brand-600 dark:border-brand-500 shadow-lg shadow-brand-500/10"
+                                    : "bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700"
                                     }`}
                             >
                                 <div className={`p-3 rounded-xl transition-colors ${activeTab === size.id ? "bg-brand-600 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
@@ -131,18 +131,6 @@ export function SizeGuide() {
                                         className="w-full h-full object-cover"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                                </div>
-                                {/* Visual indicator of what fits */}
-                                <div className="absolute -bottom-4 -right-4 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 animate-float">
-                                    <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-accent-100 dark:bg-accent-950 rounded-lg">
-                                            <Box className="text-accent-600 dark:text-accent-400" size={18} />
-                                        </div>
-                                        <div>
-                                            <div className="text-xs font-bold text-slate-900 dark:text-white">Estimate</div>
-                                            <div className="text-[10px] text-slate-500">Approx. 40-50 boxes</div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </motion.div>

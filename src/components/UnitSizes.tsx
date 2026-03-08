@@ -3,39 +3,99 @@ import { useEffect, useRef, useState } from "react";
 
 const units = [
   {
-    size: "5x5",
-    type: "Climate Controlled",
+    size: "5x10",
+    type: "Non-Climate Controlled",
     price: "$60",
     description: "Perfect for a few boxes, small furniture, or seasonal items.",
+    features: ["Walk-in closet size", "Drive-up access", "Ground floor"],
+    popular: false,
+  },
+  {
+    size: "10x10",
+    type: "Non-Climate Controlled",
+    price: "$85",
+    description: "Ideal for a one-bedroom apartment or small office.",
+    features: ["Half a standard garage", "Drive-up access", "Roll-up door"],
+    popular: true,
+  },
+  {
+    size: "10x15",
+    type: "Non-Climate Controlled",
+    price: "$120",
+    description: "Great for a two-bedroom apartment or large items.",
+    features: ["Two-thirds of a garage", "Drive-up access", "Ground floor"],
+    popular: false,
+  },
+  {
+    size: "10x20",
+    type: "Non-Climate Controlled",
+    price: "$140",
+    description: "Fits a three-bedroom house or a vehicle.",
+    features: ["Standard one-car garage", "Drive-up access", "Roll-up door"],
+    popular: false,
+  },
+  {
+    size: "10x30",
+    type: "Non-Climate Controlled",
+    price: "$225",
+    description: "Contents of a 3-5 bedroom house or large vehicles.",
+    features: ["Large multi-room size", "Drive-up access", "Roll-up door"],
+    popular: false,
+  },
+  {
+    size: "5x10",
+    type: "Climate Controlled",
+    price: "$90",
+    description: "Perfect for a few boxes or sensitive seasonal items.",
     features: ["Walk-in closet size", "Climate controlled", "Ground floor"],
     popular: false,
   },
   {
     size: "10x10",
-    type: "Drive-Up Access",
-    price: "$120",
-    description: "Ideal for a one-bedroom apartment or small office.",
-    features: [
-      "Half of a standard garage",
-      "Drive-up access",
-      "Roll-up door",
-    ],
-    popular: true,
+    type: "Climate Controlled",
+    price: "$130",
+    description: "Ideal for sensitive items from a one-bedroom apartment.",
+    features: ["Half a standard garage", "Climate controlled", "Ground floor"],
+    popular: false,
   },
   {
     size: "10x15",
     type: "Climate Controlled",
-    price: "$165",
-    description: "Great for a two-bedroom apartment or large items.",
+    price: "$175",
+    description: "Great for a two-bedroom apartment or sensitive inventory.",
     features: ["Two-thirds of a garage", "Climate controlled", "Ground floor"],
     popular: false,
   },
   {
     size: "10x20",
-    type: "Drive-Up Access",
-    price: "$225",
-    description: "Fits a three-bedroom house or a vehicle.",
-    features: ["Standard one-car garage", "Drive-up access", "Roll-up door"],
+    type: "Climate Controlled",
+    price: "$220",
+    description: "Fits a three-bedroom house worth of sensitive items.",
+    features: ["Standard one-car garage", "Climate controlled", "Ground floor"],
+    popular: false,
+  },
+  {
+    size: "11x40",
+    type: "RV Storage",
+    price: "$150",
+    description: "Large 16' high space perfect for recreational vehicles.",
+    features: ["Electricity included", "Covered space", "Easy access"],
+    popular: false,
+  },
+  {
+    size: "11x26",
+    type: "Boat Storage",
+    price: "$95",
+    description: "13' high space designed specifically for boats.",
+    features: ["Electricity included", "Covered space", "Easy access"],
+    popular: false,
+  },
+  {
+    size: "Open",
+    type: "Storage",
+    price: "$45",
+    description: "Affordable open-air storage for various vehicles or equipment.",
+    features: ["Uncovered space", "Varying sizes available", "No electricity"],
     popular: false,
   },
 ];
@@ -97,8 +157,8 @@ export function UnitSizes() {
             <div
               key={`${unit.size}-${unit.type}`}
               className={`group relative flex flex-col p-8 bg-white dark:bg-slate-950 rounded-3xl border transition-all duration-500 hover:-translate-y-2 ${unit.popular
-                  ? "border-brand-600 shadow-xl shadow-brand-500/10 dark:border-brand-500/50 dark:shadow-brand-500/5"
-                  : "border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-200 dark:hover:border-brand-800/50"
+                ? "border-brand-600 shadow-xl shadow-brand-500/10 dark:border-brand-500/50 dark:shadow-brand-500/5"
+                : "border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-200 dark:hover:border-brand-800/50"
                 } ${isVisible ? "animate-fade-in-up" : "opacity-0"
                 }`}
               style={{
@@ -154,8 +214,8 @@ export function UnitSizes() {
               <a
                 href="#contact"
                 className={`w-full py-3.5 px-4 rounded-xl font-semibold text-center transition-all duration-300 block ${unit.popular
-                    ? "bg-brand-600 text-white hover:bg-brand-700 shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30"
-                    : "bg-slate-100 text-slate-900 hover:bg-brand-600 hover:text-white dark:bg-slate-800 dark:text-white dark:hover:bg-brand-600"
+                  ? "bg-brand-600 text-white hover:bg-brand-700 shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30"
+                  : "bg-slate-100 text-slate-900 hover:bg-brand-600 hover:text-white dark:bg-slate-800 dark:text-white dark:hover:bg-brand-600"
                   }`}
               >
                 Reserve Now
