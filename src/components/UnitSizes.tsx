@@ -5,7 +5,7 @@ const units = [
   {
     size: "5x10",
     type: "Non-Climate Controlled",
-    price: "$60",
+    priceKey: "5x10_non_climate",
     description: "Perfect for a few boxes, small furniture, or seasonal items.",
     features: ["Walk-in closet size", "Drive-up access", "Ground floor"],
     popular: false,
@@ -13,7 +13,7 @@ const units = [
   {
     size: "10x10",
     type: "Non-Climate Controlled",
-    price: "$85",
+    priceKey: "10x10_non_climate",
     description: "Ideal for a one-bedroom apartment or small office.",
     features: ["Half a standard garage", "Drive-up access", "Roll-up door"],
     popular: true,
@@ -21,7 +21,7 @@ const units = [
   {
     size: "10x15",
     type: "Non-Climate Controlled",
-    price: "$120",
+    priceKey: "10x15_non_climate",
     description: "Great for a two-bedroom apartment or large items.",
     features: ["Two-thirds of a garage", "Drive-up access", "Ground floor"],
     popular: false,
@@ -29,7 +29,7 @@ const units = [
   {
     size: "10x20",
     type: "Non-Climate Controlled",
-    price: "$140",
+    priceKey: "10x20_non_climate",
     description: "Fits a three-bedroom house or a vehicle.",
     features: ["Standard one-car garage", "Drive-up access", "Roll-up door"],
     popular: false,
@@ -37,7 +37,7 @@ const units = [
   {
     size: "10x30",
     type: "Non-Climate Controlled",
-    price: "$225",
+    priceKey: "10x30_non_climate",
     description: "Contents of a 3-5 bedroom house or large vehicles.",
     features: ["Large multi-room size", "Drive-up access", "Roll-up door"],
     popular: false,
@@ -45,7 +45,7 @@ const units = [
   {
     size: "5x10",
     type: "Climate Controlled",
-    price: "$90",
+    priceKey: "5x10_climate",
     description: "Perfect for a few boxes or sensitive seasonal items.",
     features: ["Walk-in closet size", "Climate controlled", "Ground floor"],
     popular: false,
@@ -53,7 +53,7 @@ const units = [
   {
     size: "10x10",
     type: "Climate Controlled",
-    price: "$130",
+    priceKey: "10x10_climate",
     description: "Ideal for sensitive items from a one-bedroom apartment.",
     features: ["Half a standard garage", "Climate controlled", "Ground floor"],
     popular: false,
@@ -61,7 +61,7 @@ const units = [
   {
     size: "10x15",
     type: "Climate Controlled",
-    price: "$175",
+    priceKey: "10x15_climate",
     description: "Great for a two-bedroom apartment or sensitive inventory.",
     features: ["Two-thirds of a garage", "Climate controlled", "Ground floor"],
     popular: false,
@@ -69,7 +69,7 @@ const units = [
   {
     size: "10x20",
     type: "Climate Controlled",
-    price: "$220",
+    priceKey: "10x20_climate",
     description: "Fits a three-bedroom house worth of sensitive items.",
     features: ["Standard one-car garage", "Climate controlled", "Ground floor"],
     popular: false,
@@ -77,23 +77,23 @@ const units = [
   {
     size: "11x40",
     type: "RV Storage",
-    price: "$150",
-    description: "Large 16' high space perfect for recreational vehicles.",
+    priceKey: "11x40_rv",
+    description: "Large 16\' high space perfect for recreational vehicles.",
     features: ["Electricity included", "Covered space", "Easy access"],
     popular: false,
   },
   {
     size: "11x26",
     type: "Boat Storage",
-    price: "$95",
-    description: "13' high space designed specifically for boats.",
+    priceKey: "11x26_boat",
+    description: "13\' high space designed specifically for boats.",
     features: ["Electricity included", "Covered space", "Easy access"],
     popular: false,
   },
   {
     size: "Open",
     type: "Storage",
-    price: "$45",
+    priceKey: "open_storage",
     description: "Affordable open-air storage for various vehicles or equipment.",
     features: ["Uncovered space", "Varying sizes available", "No electricity"],
     popular: false,
@@ -184,8 +184,9 @@ export function UnitSizes() {
               </div>
 
               <div className="mb-6 flex items-baseline text-slate-900 dark:text-white">
-                <span className="text-5xl font-extrabold tracking-tight">
-                  {unit.price}
+                <span id={`site-price-${unit.priceKey}`} className="text-5xl font-extrabold tracking-tight">
+                  {/* Price will be loaded by cms-integration.js */}
+                  Loading...
                 </span>
                 <span className="ml-1 text-xl font-medium text-slate-400 dark:text-slate-500">
                   /mo

@@ -1,0 +1,18 @@
+{
+  "phone": "(830) 626-5555",
+  "email": "info@grueneselfstorage.com",
+  "prices": {
+    "5x10_non_climate": "$60",
+    "10x10_non_climate": "$85",
+    "10x15_non_climate": "$120",
+    "10x20_non_climate": "$140",
+    "10x30_non_climate": "$225",
+    "5x10_climate": "$90",
+    "10x10_climate": "$130",
+    "10x15_climate": "$175",
+    "10x20_climate": "$220",
+    "11x40_rv": "$150",
+    "11x26_boat": "$95",
+    "open_storage": "$45"
+  }
+}

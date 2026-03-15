@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .logout-button {
+            background-color: #dc3545;
+            margin-top: 20px;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        #adminPanel {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loginForm">
+            <h1>Admin Login</h1>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button onclick="login()">Login</button>
+            <div id="loginMessage" class="message"></div>
+        </div>
+
+        <div id="adminPanel">
+            <h1>Edit Website Content</h1>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div id="priceFields"></div>
+            <button onclick="saveData()">Save Changes</button>
+            <div id="saveMessage" class="message"></div>
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        const apiEndpoint = 'api.php';
+
+        async function checkAuth() {
+            const response = await fetch(`${apiEndpoint}?action=check_auth`);
+            const data = await response.json();
+            if (data.authenticated) {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                fetchData();
+            } else {
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('adminPanel').style.display = 'none';
+            }
+        }
+
+        async function login() {
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('loginMessage');
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
+
+            const response = await fetch(`${apiEndpoint}?action=login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: password })
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                messageDiv.classList.add('success');
+                messageDiv.textContent = data.message;
+                checkAuth();
+            } else {
+                messageDiv.classList.add('error');
+                messageDiv.textContent = data.message;
+            }
+        }
+
+        async function logout() {
+            const response = await fetch(`${apiEndpoint}?action=logout`);
+            const data = await response.json();
+            if (data.success) {
+                checkAuth();
+                document.getElementById('password').value = ''; // Clear password field
+            }
+        }
+
+        function generatePriceFields(prices) {
+            const priceFieldsDiv = document.getElementById('priceFields');
+            priceFieldsDiv.innerHTML = ''; // Clear existing fields
+            for (const key in prices) {
+                if (Object.hasOwnProperty.call(prices, key)) {
+                    const labelText = key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+                    const div = document.createElement('div');
+                    div.className = 'form-group';
+                    div.innerHTML = `
+                        <label for="price-${key}">${labelText}:</label>
+                        <input type="text" id="price-${key}" name="price-${key}" value="${prices[key]}">
+                    `;
+                    priceFieldsDiv.appendChild(div);
+                }
+            }
+        }
+
+        async function fetchData() {
+            const response = await fetch(`${apiEndpoint}?action=get_data`);
+            const result = await response.json();
+
+            if (result.success) {
+                const data = result.data;
+                document.getElementById('phone').value = data.phone || '';
+                document.getElementById('email').value = data.email || '';
+                generatePriceFields(data.prices || {});
+            } else {
+                alert('Error fetching data: ' + result.message);
+            }
+        }
+
+        async function saveData() {
+            const messageDiv = document.getElementById('saveMessage');
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
+
+            const newData = {
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                prices: {}
+            };
+
+            const priceFieldsDiv = document.getElementById('priceFields');
+            const priceInputs = priceFieldsDiv.querySelectorAll('input[type="text"]');
+            priceInputs.forEach(input => {
+                const key = input.id.replace('price-', '');
+                newData.prices[key] = input.value;
+            });
+
+            const response = await fetch(`${apiEndpoint}?action=save_data`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newData)
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                messageDiv.classList.add('success');
+                messageDiv.textContent = data.message;
+            } else {
+                messageDiv.classList.add('error');
+                messageDiv.textContent = data.message;
+            }
+        }
+
+        // Initial check when the page loads
+        checkAuth();
+    </script>
+</body>
+</html>
