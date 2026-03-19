@@ -55,34 +55,14 @@ export function Hero() {
       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-600 via-accent-500 to-brand-600 z-10" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Badge */}
-        <div
-          className={`inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 mb-8 transition-all duration-700 ${isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-4"
-            }`}
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-500"></span>
-          </span>
-          <span className="text-sm font-medium text-white/90">
-            Now Accepting Reservations
-          </span>
-        </div>
-
         <h1
           className={`text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 transition-all duration-700 delay-100 ${isVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6"
             }`}
         >
-          <span className="text-white drop-shadow-lg">
-            Secure & Accessible
-          </span>
-          <br className="hidden sm:block" />
           <span className="bg-gradient-to-r from-brand-300 via-brand-400 to-brand-300 bg-clip-text text-transparent drop-shadow-lg">
-            Self Storage in Gruene
+            A Gruene Self Storage
           </span>
         </h1>
 
