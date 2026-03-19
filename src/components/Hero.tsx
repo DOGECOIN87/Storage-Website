@@ -87,7 +87,7 @@ export function Hero() {
             id="cta-view-units"
             className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all duration-300 shadow-lg shadow-brand-700/30 hover:shadow-xl hover:shadow-brand-700/40 hover:-translate-y-0.5 group"
           >
-            View Unit Sizes & Prices
+            Unit Sizes & Rates
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </a>
           <a
