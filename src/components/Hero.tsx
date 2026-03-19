@@ -25,7 +25,7 @@ export function Hero() {
     {
       icon: MapPin,
       title: "Prime Location",
-      desc: "Conveniently located in Gruene, TX",
+      desc: "Located in Gruene, TX",
     },
   ];
 
