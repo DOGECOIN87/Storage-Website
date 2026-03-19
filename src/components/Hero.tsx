@@ -43,7 +43,7 @@ export function Hero() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}hero.mp4`} type="video/mp4" />
         </video>
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/30 dark:bg-slate-900/75" />
