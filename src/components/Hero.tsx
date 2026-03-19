@@ -20,8 +20,9 @@ export function Hero() {
     },
     {
       icon: Clock,
-      title: "24 Hour Access on Request",
-      desc: "Gated Surveillance",
+      title: "Extended Access",
+      desc: "Access your unit 7 days a week",
+      extra: ["24 Hour Access on Request", "Gated Surveillance"],
     },
     {
       icon: MapPin,
