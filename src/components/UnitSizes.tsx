@@ -6,6 +6,7 @@ const units = [
     size: "5x10",
     type: "Non-Climate Controlled",
     priceKey: "5x10_non_climate",
+    price: "$60.00",
     description: "Perfect for a few boxes, small furniture, or seasonal items.",
     features: ["Walk-in closet size", "Drive-up access", "Ground floor"],
     popular: false,
