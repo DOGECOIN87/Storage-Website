@@ -17,7 +17,7 @@ const features = [
   {
     name: "Electronic Gate Access",
     description:
-      "Secure, personalized keypad entry ensures only authorized customers can access the facility.",
+      "Secure, personalized keypad entry/exit ensures only authorized customers can access the facility.",
     icon: Key,
   },
   {
