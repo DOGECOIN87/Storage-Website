@@ -14,8 +14,9 @@ export function Hero() {
   const features = [
     {
       icon: ShieldCheck,
-      title: "On Site Management",
-      desc: "All Ground Floor Units",
+      title: "24/7 Security",
+      desc: "Video Surveillance & Gated Access",
+      extra: ["On-Site Management", "All Ground Floor Units"],
     },
     {
       icon: Clock,
@@ -120,6 +121,11 @@ export function Hero() {
               <p className="text-sm text-white/60">
                 {feature.desc}
               </p>
+              {"extra" in feature && (feature as any).extra.map((line: string, j: number) => (
+                <p key={j} className="text-sm text-white/60 mt-1 first:mt-3 font-semibold">
+                  {line}
+                </p>
+              ))}
               {feature.title === "Prime Location" && (
                 <iframe
                   src="https://maps.google.com/maps?q=1150+FM+306,New+Braunfels,TX+78130&t=&z=15&ie=UTF8&iwloc=&output=embed"
