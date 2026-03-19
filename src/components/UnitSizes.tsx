@@ -212,15 +212,6 @@ export function UnitSizes() {
                 ))}
               </ul>
 
-              <a
-                href="#contact"
-                className={`w-full py-3.5 px-4 rounded-xl font-semibold text-center transition-all duration-300 block ${unit.popular
-                  ? "bg-brand-600 text-white hover:bg-brand-700 shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30"
-                  : "bg-slate-100 text-slate-900 hover:bg-brand-600 hover:text-white dark:bg-slate-800 dark:text-white dark:hover:bg-brand-600"
-                  }`}
-              >
-                Reserve Now
-              </a>
             </div>
           ))}
         </div>
