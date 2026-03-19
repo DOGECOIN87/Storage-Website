@@ -62,13 +62,6 @@ export function Navbar() {
                 <Phone className="h-4 w-4" />
                 (830) 626-5555
               </a>
-              <a
-                href="#units"
-                id="nav-rent-now"
-                className="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all duration-300 shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 hover:-translate-y-0.5"
-              >
-                Rent Now
-              </a>
             </div>
           </div>
 
@@ -111,13 +104,6 @@ export function Navbar() {
               >
                 <Phone className="h-4 w-4" />
                 (830) 626-5555
-              </a>
-              <a
-                href="#units"
-                className="block w-full text-center px-4 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition-colors shadow-md"
-                onClick={() => setIsOpen(false)}
-              >
-                Rent Now
               </a>
             </div>
           </div>
