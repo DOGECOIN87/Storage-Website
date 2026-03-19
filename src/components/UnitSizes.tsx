@@ -14,6 +14,7 @@ const units = [
     size: "10x10",
     type: "Non-Climate Controlled",
     priceKey: "10x10_non_climate",
+    price: "$95.00",
     description: "Ideal for a one-bedroom apartment or small office.",
     features: ["Half a standard garage", "Drive-up access", "Roll-up door"],
     popular: true,
@@ -22,6 +23,7 @@ const units = [
     size: "10x15",
     type: "Non-Climate Controlled",
     priceKey: "10x15_non_climate",
+    price: "$125.00",
     description: "Great for a two-bedroom apartment or large items.",
     features: ["Two-thirds of a garage", "Drive-up access", "Ground floor"],
     popular: false,
@@ -30,6 +32,7 @@ const units = [
     size: "10x20",
     type: "Non-Climate Controlled",
     priceKey: "10x20_non_climate",
+    price: "$150.00",
     description: "Fits a three-bedroom house or a vehicle.",
     features: ["Standard one-car garage", "Drive-up access", "Roll-up door"],
     popular: false,
@@ -185,8 +188,7 @@ export function UnitSizes() {
 
               <div className="mb-6 flex items-baseline text-slate-900 dark:text-white">
                 <span id={`site-price-${unit.priceKey}`} className="text-5xl font-extrabold tracking-tight">
-                  {/* Price will be loaded by cms-integration.js */}
-                  Loading...
+                  {(unit as any).price || "Call"}
                 </span>
                 <span className="ml-1 text-xl font-medium text-slate-400 dark:text-slate-500">
                   /mo
