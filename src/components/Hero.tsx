@@ -14,13 +14,13 @@ export function Hero() {
   const features = [
     {
       icon: ShieldCheck,
-      title: "24/7 Security",
-      desc: "Video surveillance & gated access",
+      title: "On Site Management",
+      desc: "All Ground Floor Units",
     },
     {
       icon: Clock,
-      title: "Extended Access",
-      desc: "Access your unit 7 days a week",
+      title: "24 Hour Access on Request",
+      desc: "Gated Surveillance",
     },
     {
       icon: MapPin,
