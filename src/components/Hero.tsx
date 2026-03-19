@@ -120,20 +120,17 @@ export function Hero() {
               <p className="text-sm text-white/60">
                 {feature.desc}
               </p>
+              {feature.title === "Prime Location" && (
+                <iframe
+                  src="https://maps.google.com/maps?q=1150+FM+306,New+Braunfels,TX+78130&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-32 rounded-xl border-0 mt-3"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="A Gruene Self Storage Location"
+                />
+              )}
             </div>
           ))}
-          {/* Prime Location card with embedded map */}
-          <div className="sm:col-span-3 mt-2">
-            <div className="group flex flex-col items-center p-4 bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-2xl border border-white/15 hover:border-brand-400/40 hover:bg-white/15 dark:hover:bg-white/10 transition-all duration-500 max-w-sm mx-auto">
-              <iframe
-                src="https://maps.google.com/maps?q=1150+FM+306,New+Braunfels,TX+78130&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-40 rounded-xl border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="A Gruene Self Storage Location"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>
